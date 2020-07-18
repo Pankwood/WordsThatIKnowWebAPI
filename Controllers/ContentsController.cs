@@ -16,13 +16,13 @@ namespace WordsThatIKnowWebAPI.Controllers
         MongoDBContext db = new MongoDBContext("WordsThatIKnowMongoDB");
 
         [HttpGet]
-        public List<Contents> Get()
+        public List<Boxes> Get()
         {
-            return db.LoadRecords<Contents>("Contents");
+            return db.LoadRecords<Boxes>("Contents");
         }
 
         [HttpPost]
-        public ActionResult Create(Contents collection)
+        public ActionResult Create(Boxes collection)
         {
             try
             {

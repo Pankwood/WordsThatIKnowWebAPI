@@ -20,8 +20,7 @@ namespace WordsThatIKnowWebAPI.DataAccess
         public List<T> LoadRecords<T>(string table)
         {
             var collection = db.GetCollection<T>(table);
-            var result = collection.Find(new BsonDocument()).ToList();
-            return result;
+            return collection.Find(new BsonDocument()).ToList();
         }
 
         public void InsertRecord<T>(string table, T record)
