@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace WordsThatIKnowWebAPI.Domain
 {
-    public class TypeOfContent
+    public class Type
     {
-        public Type Type { get; set; }
+        public TypeOfContent TypeOfContent { get; set; }
+        public TypeOfDefinition TypeOfDefinition { get; set; }
     }
 
-    public enum Type
+    public enum TypeOfContent
     {
         [EnumMember(Value = "WORD")]
         Word,
@@ -20,5 +21,13 @@ namespace WordsThatIKnowWebAPI.Domain
         Expression
     }
 
+    public enum TypeOfDefinition
+    {
+        [EnumMember(Value = "NOUN")]
+        Noun,
+
+        [EnumMember(Value = "VERB")]
+        Verb
+    }
 
 }
