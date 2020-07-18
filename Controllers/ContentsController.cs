@@ -16,7 +16,7 @@ namespace WordsThatIKnowWebAPI.Controllers
         MongoDBContext db = new MongoDBContext("WordsThatIKnowMongoDB");
 
         [HttpGet]
-        public IEnumerable<Contents> Get()
+        public List<Contents> Get()
         {
             return db.LoadRecords<Contents>("Contents");
         }
@@ -28,12 +28,12 @@ namespace WordsThatIKnowWebAPI.Controllers
             {
                 db.InsertRecord("Contents", collection);
 
-                return NoContent();
+                return Ok();
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                return NoContent();
+                return Problem();
             }
         }
     }
