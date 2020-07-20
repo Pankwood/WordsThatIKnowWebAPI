@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WordsThatIKnowWebAPI.DataAccess;
 using WordsThatIKnowWebAPI.Domain;
+using WordsThatIKnowWebAPI.Services;
 
 namespace WordsThatIKnowWebAPI.Controllers
 {
@@ -13,12 +14,16 @@ namespace WordsThatIKnowWebAPI.Controllers
     [Route("[controller]")]
     public class ContentsController : Controller
     {
-        MongoDBContext db = new MongoDBContext("WordsThatIKnowMongoDB");
+        private readonly ContentsService _contentsService;
+        public ContentsController(ContentsService contentsService)
+        {
+            _contentsService = contentsService;
+        }
 
         [HttpGet]
         public List<Boxes> Get()
         {
-            return db.LoadRecords<Boxes>("Contents");
+            return _contentsService.LoadRecords<Boxes>("Contents");
         }
 
         [HttpPost]
@@ -26,7 +31,7 @@ namespace WordsThatIKnowWebAPI.Controllers
         {
             try
             {
-                db.InsertRecord("Contents", collection);
+                _contentsService.InsertRecord("Contents", collection);
 
                 return Ok();
             }

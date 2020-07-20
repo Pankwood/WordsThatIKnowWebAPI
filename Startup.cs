@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using WordsThatIKnowWebAPI.Services;
 
 namespace WordsThatIKnowWebAPI
 {
@@ -29,6 +30,9 @@ namespace WordsThatIKnowWebAPI
 
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen();
+
+            //Dependency Injection
+            services.AddSingleton<ContentsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
