@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using WordsThatIKnowWebAPI.DataAccess;
 using WordsThatIKnowWebAPI.Domain;
@@ -92,7 +93,7 @@ namespace WordsThatIKnowWebAPI.Controllers
             {
                 _contentsService.InsertRecord("Contents", collection);
 
-                return Ok();
+                return Created(HttpContext.Request.GetDisplayUrl() + "/" + collection.Id, collection);
             }
             catch
             {
