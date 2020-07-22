@@ -22,7 +22,13 @@ namespace WordsThatIKnowWebAPI.DataAccess
             var collection = db.GetCollection<T>(table);
             return collection.Find(new BsonDocument()).ToList();
         }
+        public T GetWordByID<T>(string table, Guid id)
+        {
+            var collection = db.GetCollection<T>(table);
+            var filter = Builders<T>.Filter.Eq("Id", id);
 
+            return collection.Find(filter).FirstOrDefault();
+        }
         public void InsertRecord<T>(string table, T record)
         {
             var collection = db.GetCollection<T>(table);

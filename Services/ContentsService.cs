@@ -21,6 +21,11 @@ namespace WordsThatIKnowWebAPI.Services
             return db.LoadRecords<T>(value);
         }
 
+        public T GetRecordByID<T>(string value, Guid id)
+        {
+            return db.GetWordByID<T>(value, id);
+        }
+
         public void InsertRecord(string value, Boxes collection)
         {
             db.InsertRecord(value, collection);

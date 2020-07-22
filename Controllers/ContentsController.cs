@@ -37,6 +37,24 @@ namespace WordsThatIKnowWebAPI.Controllers
         }
 
         /// <summary>
+        /// Get word collection by ID
+        /// </summary>
+        /// <param name="id">Used to get a word collection.</param>
+        /// <returns>Return a word collection</returns>
+        /// <response code="204">The server has successfully fulfilled the request and that there is no additional content to send in the response payload body.</response> 
+        /// <response code="404">If the item is null</response> 
+        /// <response code="500">Something went wrong on the server</response> 
+        [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public Boxes Get(Guid id)
+        {
+            return _contentsService.GetRecordByID<Boxes>("Contents", id);
+        }
+
+        /// <summary>
         /// Added new word
         /// </summary>
         /// <remarks>
