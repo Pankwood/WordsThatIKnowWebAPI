@@ -12,7 +12,6 @@ namespace WordsThatIKnowWebAPI.Domain
     {
         public string Content { get; set; }
         public TypeOfContent TypeOfContent { get; set; }
-        public TypeOfDefinition TypeOfDefinition { get; set; }
         public List<Translations> Translations { get; set; }
         public List<Curiosities> Curiosities { get; set; }
         public List<Definitions> Definitions { get; set; }

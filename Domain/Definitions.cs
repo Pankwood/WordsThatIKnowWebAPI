@@ -9,5 +9,6 @@ namespace WordsThatIKnowWebAPI.Domain
     {
         public string Definition { get; set; }
         public string Exemple { get; set; }
+        public TypeOfDefinition TypeOfDefinition { get; set; }
     }
 }
