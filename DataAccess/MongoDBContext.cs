@@ -17,19 +17,19 @@ namespace WordsThatIKnowWebAPI.DataAccess
             db = client.GetDatabase(database);
         }
 
-        public List<T> LoadRecords<T>(string table)
+        public List<T> GetCollections<T>(string table)
         {
             var collection = db.GetCollection<T>(table);
             return collection.Find(new BsonDocument()).CountDocuments() == 0 ? null : collection.Find(new BsonDocument()).ToList();
         }
-        public T GetWordByID<T>(string table, Guid id)
+        public T GetCollectionsByID<T>(string table, Guid id)
         {
             var collection = db.GetCollection<T>(table);
             var filter = Builders<T>.Filter.Eq("Id", id);
 
             return collection.Find(filter).FirstOrDefault();
         }
-        public void InsertRecord<T>(string table, T record)
+        public void InsertCollection<T>(string table, T record)
         {
             var collection = db.GetCollection<T>(table);
             collection.InsertOne(record);

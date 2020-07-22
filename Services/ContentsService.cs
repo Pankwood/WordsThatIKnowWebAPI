@@ -16,19 +16,19 @@ namespace WordsThatIKnowWebAPI.Services
             db = new MongoDBContext(configuration.GetSection("ContentsDatabaseSettings").GetSection("DatabaseName").Value);
         }
 
-        public List<T> LoadRecords<T>(string value)
+        public List<T> GetCollections<T>(string value)
         {
-            return db.LoadRecords<T>(value);
+            return db.GetCollections<T>(value);
         }
 
-        public T GetRecordByID<T>(string value, Guid id)
+        public T GetCollectionsByID<T>(string value, Guid id)
         {
-            return db.GetWordByID<T>(value, id);
+            return db.GetCollectionsByID<T>(value, id);
         }
 
-        public void InsertRecord(string value, Boxes collection)
+        public void InsertCollection(string value, Boxes collection)
         {
-            db.InsertRecord(value, collection);
+            db.InsertCollection(value, collection);
         }
     }
 }
