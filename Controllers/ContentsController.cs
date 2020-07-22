@@ -26,10 +26,12 @@ namespace WordsThatIKnowWebAPI.Controllers
         /// Get all words
         /// </summary>
         /// <returns>Return all content</returns>
+        /// <response code="204">The server has successfully fulfilled the request and that there is no additional content to send in the response payload body.</response> 
         /// <response code="400">If the item is null</response> 
         /// <response code="500">Something went wrong on the server</response> 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public List<Boxes> Get()
         {

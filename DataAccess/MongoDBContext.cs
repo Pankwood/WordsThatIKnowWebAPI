@@ -20,7 +20,7 @@ namespace WordsThatIKnowWebAPI.DataAccess
         public List<T> LoadRecords<T>(string table)
         {
             var collection = db.GetCollection<T>(table);
-            return collection.Find(new BsonDocument()).ToList();
+            return collection.Find(new BsonDocument()).CountDocuments() == 0 ? null : collection.Find(new BsonDocument()).ToList();
         }
         public T GetWordByID<T>(string table, Guid id)
         {
