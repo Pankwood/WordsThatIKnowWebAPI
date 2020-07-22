@@ -27,8 +27,7 @@ namespace WordsThatIKnowWebAPI.Controllers
         /// </summary>
         /// <returns>Return all content</returns>
         /// <response code="204">The server has successfully fulfilled the request and that there is no additional content to send in the response payload body.</response> 
-        /// <response code="400">If the item is null</response> 
-        /// <response code="500">Something went wrong on the server</response> 
+        /// <response code="500">The server encountered an unexpected condition that prevented it from fulfilling the request.</response> 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -44,12 +43,10 @@ namespace WordsThatIKnowWebAPI.Controllers
         /// <param name="id">Used to get a word collection.</param>
         /// <returns>Return a word collection</returns>
         /// <response code="204">The server has successfully fulfilled the request and that there is no additional content to send in the response payload body.</response> 
-        /// <response code="404">If the item is null</response> 
-        /// <response code="500">Something went wrong on the server</response> 
+        /// <response code="500">The server encountered an unexpected condition that prevented it from fulfilling the request.</response> 
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public Boxes Get(Guid id)
         {
@@ -100,9 +97,9 @@ namespace WordsThatIKnowWebAPI.Controllers
         ///
         /// </remarks>
         /// <returns>A newly created Content</returns>
-        /// <response code="201">Returns the newly created item</response>
-        /// <response code="400">If the item is null or the request json format is wrong</response> 
-        /// <response code="500">Something went wrong on the server</response> 
+        /// <response code="201">The request has been fulfilled and has resulted in one or more new resources being created.</response>
+        /// <response code="400">The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).</response> 
+        /// <response code="500">The server encountered an unexpected condition that prevented it from fulfilling the request.</response> 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
