@@ -34,7 +34,7 @@ namespace WordsThatIKnowWebAPI.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public List<Boxes> Get()
         {
-            return _contentsService.LoadRecords<Boxes>("Contents");
+            return _contentsService.GetCollections<Boxes>("Contents");
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace WordsThatIKnowWebAPI.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public Boxes Get(Guid id)
         {
-            return _contentsService.GetRecordByID<Boxes>("Contents", id);
+            return _contentsService.GetCollectionsByID<Boxes>("Contents", id);
         }
 
         /// <summary>
@@ -108,7 +108,7 @@ namespace WordsThatIKnowWebAPI.Controllers
         {
             try
             {
-                _contentsService.InsertRecord("Contents", collection);
+                _contentsService.InsertCollection("Contents", collection);
 
                 return Created(HttpContext.Request.GetDisplayUrl() + "/" + collection.Id, collection);
             }
