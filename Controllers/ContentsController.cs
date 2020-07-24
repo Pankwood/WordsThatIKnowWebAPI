@@ -37,16 +37,18 @@ namespace WordsThatIKnowWebAPI.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public List<Boxes> Get()
+        public ActionResult Get()
         {
             try
             {
-                return _contentsService.GetCollections<Boxes>("Contents");
+                var response = _contentsService.GetCollections<Boxes>("Contents");
+
+                return Ok(response);
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex.Message);
-                return null;
+                return Problem(ex.Message);
             }
         }
 
@@ -61,17 +63,18 @@ namespace WordsThatIKnowWebAPI.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public Boxes Get(Guid id)
+        public ActionResult Get(Guid id)
         {
             try
             {
-                return _contentsService.GetCollectionsByID<Boxes>("Contents", id);
+                var response = _contentsService.GetCollectionsByID<Boxes>("Contents", id);
 
+                return Ok(response);
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex.Message);
-                return null;
+                return Problem(ex.Message);
             }
         }
 
