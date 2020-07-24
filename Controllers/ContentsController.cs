@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using WordsThatIKnowWebAPI.DataAccess;
 using WordsThatIKnowWebAPI.Domain;
 using WordsThatIKnowWebAPI.Services;
@@ -17,9 +18,13 @@ namespace WordsThatIKnowWebAPI.Controllers
     public class ContentsController : Controller
     {
         private readonly ContentsService _contentsService;
-        public ContentsController(ContentsService contentsService)
+        private readonly ILogger _logger;
+
+        public ContentsController(ContentsService contentsService, ILogger<ContentsController> logger)
         {
             _contentsService = contentsService;
+            _logger = logger;
+
         }
 
         /// <summary>
@@ -34,7 +39,15 @@ namespace WordsThatIKnowWebAPI.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public List<Boxes> Get()
         {
-            return _contentsService.GetCollections<Boxes>("Contents");
+            try
+            {
+                return _contentsService.GetCollections<Boxes>("Contents");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return null;
+            }
         }
 
         /// <summary>
@@ -50,7 +63,16 @@ namespace WordsThatIKnowWebAPI.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public Boxes Get(Guid id)
         {
-            return _contentsService.GetCollectionsByID<Boxes>("Contents", id);
+            try
+            {
+                return _contentsService.GetCollectionsByID<Boxes>("Contents", id);
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return null;
+            }
         }
 
         /// <summary>
@@ -112,8 +134,9 @@ namespace WordsThatIKnowWebAPI.Controllers
 
                 return Created(HttpContext.Request.GetDisplayUrl() + "/" + collection.Id, collection);
             }
-            catch
+            catch (Exception ex)
             {
+                _logger.LogError(ex.Message);
                 return Problem();
             }
         }
