@@ -54,6 +54,7 @@ namespace WordsThatIKnowWebAPI
 
             //Dependency Injection
             services.AddSingleton<ContentsService>();
+            services.AddSingleton<WordsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
