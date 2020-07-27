@@ -34,5 +34,11 @@ namespace WordsThatIKnowWebAPI.DataAccess
             var collection = db.GetCollection<T>(table);
             collection.InsertOne(record);
         }
+
+        public void InsertCollections<T>(string table, List<T> record)
+        {
+            var collection = db.GetCollection<T>(table);
+            collection.InsertMany(record);
+        }
     }
 }
