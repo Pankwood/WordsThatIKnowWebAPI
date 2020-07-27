@@ -28,7 +28,7 @@ namespace WordsThatIKnowWebAPI.Controllers
         }
 
         /// <summary>
-        /// Get all words
+        /// Get all contents
         /// </summary>
         /// <returns>Return all content</returns>
         /// <response code="204">The server has successfully fulfilled the request and that there is no additional content to send in the response payload body.</response> 
@@ -53,9 +53,9 @@ namespace WordsThatIKnowWebAPI.Controllers
         }
 
         /// <summary>
-        /// Get word collection by ID
+        /// Get content collection by ID
         /// </summary>
-        /// <param name="id">Used to get a word collection.</param>
+        /// <param name="id">Used to get a content collection.</param>
         /// <returns>Return a word collection</returns>
         /// <response code="204">The server has successfully fulfilled the request and that there is no additional content to send in the response payload body.</response> 
         /// <response code="500">The server encountered an unexpected condition that prevented it from fulfilling the request.</response> 
@@ -79,7 +79,7 @@ namespace WordsThatIKnowWebAPI.Controllers
         }
 
         /// <summary>
-        /// Added new word
+        /// Added new content
         /// </summary>
         /// <remarks>
         /// Sample request:
